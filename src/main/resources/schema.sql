@@ -5,7 +5,7 @@ create table if not exists posts (
     password    varchar(255) not null,
     content     text not null,
     view_count bigint not null default 0,
-    created_at timestamp not null default now(),
-    updated_at timestamp,
+    created_at TIMESTAMP WITH TIME ZONE,
+    updated_at TIMESTAMP WITH TIME ZONE,
     deleted boolean not null default false
 );

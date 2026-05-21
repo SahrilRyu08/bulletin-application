@@ -19,9 +19,9 @@
     </insert>
     <update id="update">
         update posts
-        set tittle = #{title},
+        set title = #{title},
         content = #{content},
-        update_at = now()
+        updated_at = now()
         where id = #{id}
     </update>
     <update id="incrementViewCount">

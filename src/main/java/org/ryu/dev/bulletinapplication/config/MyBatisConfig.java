@@ -27,6 +27,11 @@ public class MyBatisConfig {
                         .getResources("classpath:/mapper/*.xml")
         );
 
+        org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration();
+        configuration.setMapUnderscoreToCamelCase(true);
+
+        sessionFactory.setConfiguration(configuration);
+
         sessionFactory.setTypeAliasesPackage(
                 "org.ryu.dev.bulletinapplication.model"
         );
