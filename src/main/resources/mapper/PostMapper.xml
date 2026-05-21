@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ryu.dev.bulletinapplication.model.PostMapper">
+
+    <select id="findAll" resultType="Post">
+        select id, title, author, view_count, created_at
+        from posts
+        where deleted = false
+        order by id desc
+    </select>
+    <select id="findById" resultType="Post">
+        select * from posts where id = #{id} and deleted = false
+    </select>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into posts(title, author, password, content, created_at)
+        values(#{title}, #{author}, #{password}, #{content},now())
+    </insert>
+    <update id="update">
+        update posts
+        set tittle = #{title},
+        content = #{content},
+        update_at = now()
+        where id = #{id}
+    </update>
+    <update id="incrementViewCount">
+        update posts set view_count = view_count + 1 where id = #{id}
+    </update>
+    <update id="softDelete">
+        update posts set deleted = true where id = #{id}
+    </update>
+    <select id="findPasswordById" resultType="String">
+        select password from posts where id = #{id}
+    </select>
+</mapper>
